@@ -31,12 +31,12 @@ public class UserController {
         System.out.println(pass);
         user.setUserid(id);
         user.setPassword(pass);
-   
+                
         return UserService.login(user);
     }
 
 
-    @PostMapping("/users")
+    @PostMapping("")
     public UserDTO join(@RequestBody UserDTO param) {
         System.out.println("가입성공 : " + param);
         System.out.println(param.getUserid());
@@ -53,17 +53,12 @@ public class UserController {
     public HashMap<String,Object> update(@RequestBody UserDTO param) {
  
              System.out.println("=====post mapping======");
- 
-             
              user.setUserid(param.getUserid());
              user.setPassword(param.getPassword());
              user.setPhone(param.getPhone());
              user.setAddress(param.getAddress());
- 
- 
              UserService.updateUser(user);
              HashMap<String,Object> map = new HashMap<>();
- 
              map.put("result", "SUCCESS");
          return map;   
      }

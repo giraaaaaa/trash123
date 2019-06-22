@@ -22,17 +22,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUser(UserDTO User) {
+        UserMapper.updateUser(User);
 
     }
 
     @Override
     public void deleteUser(UserDTO User) {
-
+        UserMapper.deleteUser(User);
     }
 
     @Override
     public UserDTO login(UserDTO User) {
-        return null;
+        return UserMapper.login(User);
     }
 
     

@@ -3,10 +3,33 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dep.web.mapper.UserMapper">
-  
+     <resultMap id = "userMap" type="com.dep.web.domain.UserDTO">
+   <id property="userid" column = "USERID"/>
+   <result property = "password" column="PASSWORD"/>
+   <result property = "phone" column="PHONE"/>
+   <result property = "address" column="ADDRESS"/>
+</resultMap>
+
   <insert id="addUser" parameterType="com.dep.web.domain.UserDTO">
         insert into USERS (USERID, PASSWORD, PHONE,ADDRESS)
         values (#{userid},#{password},#{phone},#{address})
   </insert>
+     <select id="login" resultMap="userMap" parameterType="com.dep.web.domain.UserDTO">
+       select * from USERS 
+       where USERID LIKE #{userid} 
+            and PASSWORD LIKE #{password}
+   </select>
+   <update id="updateUser" parameterType="com.dep.web.domain.UserDTO">
+       update USERS set
+       PASSWORD = #{password},
+       PHONE = #{phone},
+       ADDRESS = #{address}
+       where USERID = #{userid}
+   </update>
+  <delete id="deleteUser" parameterType="com.dep.web.domain.UserDTO">
+       delete from USERS where USERID = #{userid}
+   </delete>
+
+
 
 </mapper>
